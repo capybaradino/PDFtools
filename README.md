@@ -12,6 +12,8 @@ Convert multi Image files to one PDF.
 Divide PDF pages to two.
 - splitpdf.py
 Split one PDF to multi PDF files.
+- trimB4fromA4.py
+Trim B4 area from A4 PDF file.
 
 ## Requirement
 - Python3
