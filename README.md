@@ -14,10 +14,13 @@ Divide PDF pages to two.
 Split one PDF to multi PDF files.
 - trimB4fromA4.py
 Trim B4 area from A4 PDF file.
+- heic2jpeg.py
+Convert .heic file to .jpeg file.
 
 ## Requirement
 - Python3
 - PyPDF2
+- pyheif(heic2jpeg)
 
 ## Contribution
 
