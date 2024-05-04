@@ -1,6 +1,8 @@
-import PyPDF2
 import argparse
 import os
+
+import PyPDF2
+
 
 def split_pdf(input_pdf, output_directory, pages_per_file=5):
     pdf_reader = PyPDF2.PdfReader(input_pdf)
@@ -24,11 +26,16 @@ def split_pdf(input_pdf, output_directory, pages_per_file=5):
         with open(output_pdf, "wb") as output_file:
             pdf_writer.write(output_file)
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Split a PDF file into multiple PDFs with a specified number of pages each.")
+    parser = argparse.ArgumentParser(
+        description="Split a PDF file into multiple PDFs with a specified number of pages each."
+    )
     parser.add_argument("input_pdf", help="Input PDF file to be split")
     parser.add_argument("output_directory", help="Output directory for the split PDFs")
-    parser.add_argument("--pages", type=int, default=5, help="Number of pages per split PDF")
+    parser.add_argument(
+        "--pages", type=int, default=5, help="Number of pages per split PDF"
+    )
 
     args = parser.parse_args()
 
@@ -39,6 +46,7 @@ def main():
         os.makedirs(output_directory)
 
     split_pdf(input_pdf, output_directory, args.pages)
+
 
 if __name__ == "__main__":
     main()
