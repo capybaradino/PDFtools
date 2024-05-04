@@ -4,7 +4,7 @@ import os
 import PyPDF2
 
 
-def split_pdf(input_pdf, output_directory, pages_per_file=5):
+def split_pdf(input_pdf, output_directory, pages_per_file=1):
     pdf_reader = PyPDF2.PdfReader(input_pdf)
 
     total_pages = len(pdf_reader.pages)
@@ -21,7 +21,8 @@ def split_pdf(input_pdf, output_directory, pages_per_file=5):
         for page_num in range(start_page, end_page):
             pdf_writer.add_page(pdf_reader.pages[page_num])
 
-        output_pdf = f"{output_directory}/{file_name_without_extension}_{i//pages_per_file + 1}{file_extension}"
+        # page number is three digits
+        output_pdf = f"{output_directory}/{file_name_without_extension}_{i//pages_per_file + 1:03d}{file_extension}"
 
         with open(output_pdf, "wb") as output_file:
             pdf_writer.write(output_file)
@@ -34,7 +35,7 @@ def main():
     parser.add_argument("input_pdf", help="Input PDF file to be split")
     parser.add_argument("output_directory", help="Output directory for the split PDFs")
     parser.add_argument(
-        "--pages", type=int, default=5, help="Number of pages per split PDF"
+        "--pages", type=int, default=1, help="Number of pages per split PDF"
     )
 
     args = parser.parse_args()
