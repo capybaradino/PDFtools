@@ -11,12 +11,18 @@ from PyPDF2 import PdfReader, PdfWriter
 def trimpdf(inputFile, outputFile, size):
     reader = PdfReader(inputFile)
     writer = PdfWriter()
+    # サイズに応じた幅と高さを設定（単位: ポイント）
     if size == "B4":
         xlen = 738
         ylen = 1030
-    else:
+    elif size == "B5":
+        xlen = 516
+        ylen = 729
+    elif size == "A4":
         xlen = 595
         ylen = 842
+    else:
+        raise ValueError(f"Unsupported size: {size}")
 
     for page in reader.pages:
         # 原稿の左下と右上の座標を取得（用紙サイズ）
